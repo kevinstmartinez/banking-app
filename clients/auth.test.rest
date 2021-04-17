@@ -1,0 +1,14 @@
+
+
+POST http://localhost:4000/auth/register
+Content-Type: application/json
+
+{
+  "dni": 9999999,
+  "email": "nicolas@gmail.com",
+  "name_lastname": "Nicolas Romero",
+  "username": "ncromero",
+  "pass": "00000",
+  "passConfirm": "0000",
+  "id_bank": 2
+}
