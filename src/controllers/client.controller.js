@@ -10,9 +10,10 @@ const doGetInsertClient = (req, res) =>{
 }
 
 const doPostInsertClient = async (req, res) =>{
-  const { dni, name_lastname, username, pass, id_bank } = req.body
+  const { dni, email, name_lastname, username, pass, id_bank } = req.body
   const newClient = { 
     dni,
+    email,
     name_lastname,
     username,
     pass,

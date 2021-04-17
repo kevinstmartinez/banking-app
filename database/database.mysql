@@ -9,6 +9,7 @@ CREATE TABLE bank(
 CREATE TABLE clients(
   id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   dni int(11),
+  email varchar(45),
   name_lastname varchar(45),
   username varchar(45),
   pass varchar(45),
@@ -52,3 +53,6 @@ CREATE TABLE payments(
   FOREIGN KEY(id_service) REFERENCES services(id)
 
 );
+
+ALTER TABLE clients ADD COLUMN email varchar(45);
+ALTER TABLE clients modify column email int after dni;
