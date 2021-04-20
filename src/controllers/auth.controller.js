@@ -45,7 +45,7 @@ const login = async (req, res)=>{
 
     pool.query('SELECT * FROM clients WHERE username=?', [username], async(error, results) =>{
       console.log(results)
-      if (!results || await bcrypt.compare(pass, results[0].pass)) {
+      if (!results || !(await bcrypt.compare(pass, results[0].pass))) {
         res.status(401).send({
           message: 'Username or Password is incorrect'
         })
