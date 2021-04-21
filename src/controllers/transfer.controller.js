@@ -9,8 +9,6 @@ const doGetInsertTransfer = async (req, res) => {
   res.send('transfers/insert')
 }
 
-
-
 const doPostInsertTransfer = async (req, res) => {
   const { amount, date_time, destiny_account_number, id_account } = req.body
   const newTransfer = {
@@ -21,10 +19,7 @@ const doPostInsertTransfer = async (req, res) => {
   }
   await pool.query('INSERT INTO transfer set ?', [newTransfer])
   res.redirect('/transfers')
-
 }
-
-
 
 const doGetEditTransfer = async (req, res) => {
   const { id } = req.params
@@ -44,7 +39,6 @@ const doPostEditTransfer = async (req, res) => {
   }
   await pool.query('UPDATE transfer set ? WHERE id=?', [newTransfer, id])
   res.redirect('/transfers')
-
 }
 
 const doGetDeleteTransfer = async (req, res) => {
@@ -52,7 +46,6 @@ const doGetDeleteTransfer = async (req, res) => {
   await pool.query('DELETE FROM transfers WHERE id=?', [id])
   res.redirect('/transfer')
 }
-
 
 const transfer = async (req, res) => {
   const { amount, date_time, destiny_account_number, origin_account_number } = req.body
@@ -62,13 +55,10 @@ const transfer = async (req, res) => {
       message: 'Please provide the info'
     })
   }
-  const destiny = destiny_account_number
-  const origin = origin_account_number
-
-  const accountTransferOrigin = await pool.query('SELECT * from accounts WHERE account_number=?', [origin])
-
-
+  
+  const accountTransferOrigin = await pool.query('SELECT * from accounts WHERE account_number=?', [origin_account_number])
   let transferWithdraw
+
   if (accountTransferOrigin[0].balance >= amount) {
     transferWithdraw = accountTransferOrigin[0].balance - amount
   } else {
@@ -77,7 +67,7 @@ const transfer = async (req, res) => {
     })
   }
 
-  const accountTransferDestiny = await pool.query('SELECT * from accounts WHERE account_number=?', [destiny])
+  const accountTransferDestiny = await pool.query('SELECT * from accounts WHERE account_number=?', [destiny_account_number])
   let transferDeposit = accountTransferDestiny[0].balance + amount
 
   try {
@@ -86,7 +76,7 @@ const transfer = async (req, res) => {
 
     const id_account = accountTransferOrigin[0].id
 
-    await pool.query('INSERT INTO transfer set ?', { amount: transferWithdraw, date_time: date_time, destiny_account_number: destiny, origin_account_number: origin, id_account: id_account }, (error, results) => {
+    await pool.query('INSERT INTO transfer set ?', { amount: transferWithdraw, date_time, destiny_account_number, origin_account_number, id_account }, (error, results) => {
       if (error) {
         return res.status(400).send({
           message: 'Error'
@@ -95,10 +85,8 @@ const transfer = async (req, res) => {
         return res.status(200).send({
           message: 'Transfer realized successfully'
         })
-
       }
     })
-
 
   } catch (error) {
     res.status(500).send({
