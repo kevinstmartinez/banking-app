@@ -15,10 +15,10 @@ app.listen(port, ()=>{
   console.log(`listen on port ${port}`)
 })
 app.use(require('./routes/index.routes'))
-app.use(require('./routes/account.routes'))
+app.use('/accounts', require('./routes/account.routes'))
 app.use(require('./routes/client.routes'))
 app.use(require('./routes/payment.routes'))
 app.use(require('./routes/service.routes'))
-app.use(require('./routes/transfer.routes'))
+app.use('/transfers', require('./routes/transfer.routes'))
 
 app.use('/auth', require('./routes/auth.routes'))

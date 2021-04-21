@@ -9,15 +9,25 @@ const doGetInsertAccount = async(req, res) =>{
   res.send('accounts/insert')
 }
 
+const generateAccountNumber = () =>{
+    let num = ''
+    while (num.length < 6) {
+        num += Math.floor(Math.random() * 10)
+    }
+    return num
+}
+
+const account_number = generateAccountNumber()
+
 const doPostInsertAccount = async(req, res) =>{
-  const { account_number, balance, type_account, id_client } = req.body
+  const { balance, type_account, id_client } = req.body
   const newAccount = {
     account_number,
     balance,
     type_account,
     id_client
   }
-  await pool.query('INSERT INRTO accounts set ?', [newAccount])
+  await pool.query('INSERT INTO accounts set ?', [newAccount])
   res.redirect('/accounts')
 }
 
