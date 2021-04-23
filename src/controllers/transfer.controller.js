@@ -76,7 +76,7 @@ const transfer = async (req, res) => {
 
     const id_account = accountTransferOrigin[0].id
 
-    await pool.query('INSERT INTO transfer set ?', { amount: transferWithdraw, date_time, destiny_account_number, origin_account_number, id_account }, (error, results) => {
+    await pool.query('INSERT INTO transfer set ?', { amount, date_time, destiny_account_number, origin_account_number, id_account }, (error, results) => {
       if (error) {
         return res.status(400).send({
           message: 'Error'

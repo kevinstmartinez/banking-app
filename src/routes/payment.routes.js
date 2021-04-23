@@ -7,7 +7,8 @@ const {
   doGetEditPayment,
   doGetDeletePayment,
   doPostInsertPayment,
-  doPostEditPayment
+  doPostEditPayment,
+  payment
 
 } = require('../controllers/payment.controller')
 
@@ -17,5 +18,6 @@ router.post('/insert', doPostInsertPayment)
 router.get('/edit/:id', doGetEditPayment)
 router.post('/edit/:id', doPostEditPayment)
 router.get('/delete/:id', doGetDeletePayment)
+router.post('/payment', payment)
 
 module.exports = router

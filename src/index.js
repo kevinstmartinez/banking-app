@@ -17,7 +17,7 @@ app.listen(port, ()=>{
 app.use(require('./routes/index.routes'))
 app.use('/accounts', require('./routes/account.routes'))
 app.use(require('./routes/client.routes'))
-app.use(require('./routes/payment.routes'))
+app.use('/payments', require('./routes/payment.routes'))
 app.use(require('./routes/service.routes'))
 app.use('/transfers', require('./routes/transfer.routes'))
 
