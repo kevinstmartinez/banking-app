@@ -3,6 +3,8 @@ POST http://localhost:4000/auth/login
 Content-Type: application/json
 
 {
-  "username": "kevinstmartinez",
-  "pass": "1123581321"
+  "username": "djreggae",
+  "pass": "lopez123"
 }
+
+//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjIwMDg5Nzg5LCJleHAiOjE2Mjc4NjU3ODl9.Pz9g8OIpuJjQSpGYp1RhnDLKzeCuuwd2-WOJ7N3KnP8

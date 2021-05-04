@@ -3,11 +3,13 @@ POST http://localhost:4000/auth/register
 Content-Type: application/json
 
 {
-  "dni": 1193543225,
-  "email": "kevinstiven@gmail.com",
-  "name_lastname": "Kevin Martinez",
-  "username": "kevinstmartinez",
-  "pass": "1123581321",
-  "passConfirm": "1123581321",
+  "dni": 12840234,
+  "email": "lope@gmail.com",
+  "name_lastname": "David Lopez",
+  "username": "djreggae",
+  "pass": "lopez123",
+  "passConfirm": "lopez123",
   "id_bank": 2
+
+
 }

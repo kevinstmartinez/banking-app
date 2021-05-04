@@ -54,5 +54,16 @@ CREATE TABLE payments(
 
 );
 
+CREATE TABLE roles(
+  id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  role varchar(45)
+);
+
+INSERT INTO roles values(1, 'admin');
+INSERT INTO roles values(2, 'user');
+
 ALTER TABLE clients ADD COLUMN email varchar(45);
 ALTER TABLE clients modify column email int after dni;
+
+ALTER TABLE clients ADD FOREIGN KEY id_role int(11) REFERENCES roles(id);
+

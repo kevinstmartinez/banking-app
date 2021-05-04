@@ -3,7 +3,8 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 const register = (req, res) =>{
-  const { dni, email, name_lastname, username, pass, passConfirm, id_bank } = req.body
+  const { dni, email, name_lastname, username, pass, passConfirm, id_bank, role } = req.body
+  let roles = req.body.role
   pool.query('SELECT * FROM clients WHERE email=?', [email], async (error, results) =>{
     if (error) {
       console.log(error)
@@ -19,16 +20,29 @@ const register = (req, res) =>{
       })
     }
 
+   
+
+    if (roles) {
+      const foundRole = await pool.query('SELECT * FROM roles WHERE role=?', [roles])
+      roles = foundRole.map( role => role.id)
+      console.log(roles)
+    } else {
+      const role = await pool.query('SELECT * FROM roles WHERE role=?',['user']);
+      roles = role[0].id
+ 
+    }
+
     let hashedPassword = await bcrypt.hash(pass, 8)
 
-    pool.query('INSERT INTO clients set ?', { dni: dni, email: email, name_lastname: name_lastname, username: username, pass: hashedPassword, id_bank: id_bank}, (error, results) =>{
+    pool.query('INSERT INTO clients set ?', { dni: dni, email: email, name_lastname: name_lastname, username: username, pass: hashedPassword, id_bank: id_bank, id_role: roles}, (error, results) =>{
       if (error) {
         console.log(error)
       } else {
         console.log(results)
         return res.status(200).send({ message:'Client registered'})
+
       }
-    })
+    }) 
 
   })  
 }
@@ -43,7 +57,7 @@ const login = async (req, res)=>{
       })
     }
 
-    pool.query('SELECT * FROM clients WHERE username=?', [username], async(error, results) =>{
+    await pool.query('SELECT * FROM clients WHERE username=?', [username], async(error, results) =>{
       console.log(results)
       if (!results || !(await bcrypt.compare(pass, results[0].pass))) {
         res.status(401).send({
@@ -56,14 +70,14 @@ const login = async (req, res)=>{
           expiresIn: process.env.JWT_EXPIRES_IN
         })
 
-        console.log(`Token: ${token}`)
-
         const cookieOptions = {
           expires: new Date( Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000 ),
           httpOnly: true
         }
         res.cookie('jwt', token, cookieOptions)
-        res.status(200).redirect('/')
+        res.status(200).json({
+          token
+        })
       }
     })
     
