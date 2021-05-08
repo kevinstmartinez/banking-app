@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const router = Router()
+const { verifyToken, isAdmin } = require('../middlewares/index')
 
 const {
   doGetAllAccounts,
@@ -12,7 +13,7 @@ const {
 
 router.get('/', doGetAllAccounts)
 router.get('/insert', doGetInsertAccount)
-router.post('/insert', doPostInsertAccount)
+router.post('/insert', [ verifyToken, isAdmin ], doPostInsertAccount)
 router.get('/edit/:id', doGetEditAccount)
 router.post('/edit/:id', doPostEditAccount)
 router.get('/delete/:id', doGetDeleteAccount)
