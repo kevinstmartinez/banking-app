@@ -4,12 +4,13 @@ Content-Type: application/json
 
 {
   "dni": 12840234,
-  "email": "lope@gmail.com",
-  "name_lastname": "David Lopez",
-  "username": "djreggae",
-  "pass": "lopez123",
-  "passConfirm": "lopez123",
-  "id_bank": 2
-
-
+  "email": "jhon@gmail.com",
+  "name_lastname": "Jhon Doe",
+  "username": "jhonde",
+  "pass": "password",
+  "passConfirm": "password",
+  "id_bank": 1,
+  "role": [
+    "admin"
+  ]
 }
