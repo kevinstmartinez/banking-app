@@ -7,7 +7,8 @@ const {
   doGetEditService,
   doGetDeleteService,
   doPostInsertService,
-  doPostEditService
+  doPostEditService,
+  deadline
 
 } = require('../controllers/service.controller')
 
@@ -17,5 +18,6 @@ router.post('/insert', doPostInsertService)
 router.get('/edit/:id', doGetEditService)
 router.post('/edit/:id', doPostEditService)
 router.get('/delete/:id', doGetDeleteService)
+router.get('/deadline/:id', deadline)
 
 module.exports = router

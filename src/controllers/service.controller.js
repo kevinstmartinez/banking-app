@@ -9,16 +9,30 @@ const doGetInsertService = async(req, res) =>{
   res.send('services/insert')
 }
 
+const generateNumberService = () =>{
+  let num = ''
+  while (num.length < 11) {
+      num += Math.floor(Math.random() * 10)
+  }
+  return num
+}
 const doPostInsertService = async(req, res) =>{
-  const { name, NIT, type_service, id_account } = req.body
-  const newService = { 
+  const { name, type_service, value, id_account } = req.body
+  const date = new Date()
+  let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)
+
+  const service = { 
     name,
-    NIT,
+    NIT: generateNumberService(),
+    deadline: lastDay,
     type_service,
+    value,
+    number_references: generateNumberService(),
+    status: false,
     id_account
   }
-  const response = await pool.query('INSERT INTO services set ?', [newService])
-  res.redirect('/services')
+  const response = await pool.query('INSERT INTO services set ?', [service])
+  res.status(200).json({ message:'Service inserted successfully' })
 }
 
 const doGetEditService = async(req, res) =>{
@@ -46,11 +60,24 @@ const doGetDeleteService = async(req, res) =>{
   res.redirect('/services')
 }
 
+const deadline = async(req, res) =>{
+  const { id } = req.params
+  const services = await pool.query('SELECT * FROM services WHERE id=? ', [id])
+
+  
+
+
+  res.status(200).json({ 
+    message: 'ok'
+  })
+}
+
 module.exports = {
   doGetAllServices,
   doGetInsertService,
   doGetEditService,
   doGetDeleteService,
   doPostInsertService,
-  doPostEditService
+  doPostEditService,
+  deadline
 }

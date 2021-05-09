@@ -55,9 +55,7 @@ const payment = async (req, res) => {
     })
   }
 
-  let isPay = false
   const date = new Date().toISOString().slice(0, 10)
-  console.log(date)
   const service = await pool.query('SELECT * FROM services WHERE id=?', [id_service])
   const account = await pool.query('SELECT * FROM accounts WHERE id=?', [service[0].id_account])
 
@@ -71,39 +69,39 @@ const payment = async (req, res) => {
       message: 'The amount does not correspond to the value of the service'
     })
   }
+  if (!(number_payment_references === service[0].number_references)) {
+    return res.status(400).send({
+      message: 'The number references does not correspond to the reference of the service'
+    })
+  }
 
-  let pay
-  if (account[0].balance >= invoice_amount) {
-    pay = account[0].balance - invoice_amount
-    isPay = true
+  let pay = account[0].balance - invoice_amount
+  let isPay = service[0].status === 0
+
+  account[0].balance >= invoice_amount
+    ? pay
+    : res.status(400).send({
+      message: 'Not enough balance'
+    })
+
+  if (isPay) {
+    isPay = 1
+
     try {
       await pool.query('UPDATE accounts set balance=? WHERE id=?', [pay, account[0].id])
+      await pool.query('UPDATE services set status=? WHERE id=?', [isPay, id_service])
+      await pool.query('INSERT INTO payments set ?', { invoice_amount, date_time: date, number_payment_references, status: isPay, id_service })
 
-      await pool.query('INSERT INTO payments set ?', { invoice_amount, date_time: date, number_payment_references, status: isPay, id_service }, (error, results) => {
-        if (error) {
-          return res.status(400).send({
-            message: 'Error'
-          })
-        } else {
-        
-          return res.status(200).send({
-            message: 'Payment realized successfully'
-          })
-        }
-      })
-
+      return res.status(200).json({ message: 'payment realized successfully' })
     } catch (error) {
       res.status(500).send({
         message: 'Internal Error. Please contact the administrator'
       })
     }
-  } else {
-    return res.status(400).send({
-      message: 'Not enough balance'
-    })
   }
-
-
+  if (!isPay) {
+    return res.status(401).json({ message: 'The service has been payed' })
+  }
 }
 
 module.exports = {

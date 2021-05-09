@@ -1,0 +1,12 @@
+
+
+
+POST http://localhost:4000/services/insert
+Content-Type: application/json
+
+{
+  "name": "luz",
+  "type_service": "public",
+  "value": 50000,
+  "id_account": 2
+}
