@@ -1,4 +1,4 @@
-POST http://localhost:4000/accounts/insert
+POST http://localhost:4000/api/accounts/insert
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksImlhdCI6MTYyMDUyODQzMiwiZXhwIjoxNjI4MzA0NDMyfQ.WzvaZ-ABsoCitOWl11kzto_qpkIoLbpx35MFOBcsl80
 

@@ -1,9 +1,8 @@
-POST http://localhost:4000/transfers/transfer
+POST http://localhost:4000/api/transfers/transfer
 Content-Type: application/json
 
 {
-  "amount": 9500,
-  "date_time": "2021/04/20",
-  "destiny_account_number": "287850",
+  "amount": 5000000,
+  "destiny_account_number": "535018",
   "origin_account_number": "822146"
 }
