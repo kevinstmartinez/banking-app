@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-
-
-
-POST http://localhost:4000/services/insert
-=======
 POST http://localhost:4000/api/services/insert
->>>>>>> refactor/features
 Content-Type: application/json
 
 {

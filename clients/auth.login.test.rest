@@ -4,10 +4,6 @@ Content-Type: application/json
 
 {
   "username": "djreggae",
-<<<<<<< HEAD
   "pass": "lopez123"
-=======
-  "pass": "lopez13"
->>>>>>> refactor/features
 }
 

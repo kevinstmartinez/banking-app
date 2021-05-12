@@ -8,11 +8,6 @@ const {
   doGetDeleteService,
   doPostInsertService,
   doPostEditService,
-<<<<<<< HEAD
-  deadline
-
-=======
->>>>>>> refactor/features
 } = require('../controllers/service.controller')
 
 router.get('/', doGetAllServices)
@@ -21,7 +16,6 @@ router.post('/insert', doPostInsertService)
 router.get('/edit/:id', doGetEditService)
 router.post('/edit/:id', doPostEditService)
 router.get('/delete/:id', doGetDeleteService)
-router.get('/deadline/:id', deadline)
 
 
 module.exports = router
