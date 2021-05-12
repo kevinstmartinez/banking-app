@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/"
+    "dev": "nodemon src/",
+    "cypress:open": "cypress open"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,7 @@
     "mysql": "^2.18.1"
   },
   "devDependencies": {
+    "cypress": "^7.3.0",
     "nodemon": "^2.0.7"
   }
 }
