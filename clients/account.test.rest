@@ -3,7 +3,6 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksImlhdCI6MTYyMDUyODQzMiwiZXhwIjoxNjI4MzA0NDMyfQ.WzvaZ-ABsoCitOWl11kzto_qpkIoLbpx35MFOBcsl80
 
 {
-  "balance": 500,
   "type_account": "Ahorros",
   "id_client": 29
 }
