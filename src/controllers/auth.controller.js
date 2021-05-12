@@ -7,30 +7,18 @@ const register = (req, res) => {
   let roles = req.body.role
 
   pool.query('SELECT * FROM clients WHERE email=?', [email], async (error, results) => {
-    if (error) {
-      console.log(error)
-    }
-    if (results.length > 0) {
-      return res.status(400).json({
-        message: 'That email is already in use'
-      })
-
-    }
-
-    if (pass !== passConfirm) {
-      return res.status(400).json({
-        message: 'Passwords do no match'
-      })
-    }
+    
+    if (results.length > 0) return res.status(400).json({ message: 'That email is already in use' })
+    
+    if (pass !== passConfirm) return res.status(400).json({ message: 'Passwords do no match' })
 
     if (roles) {
       const foundRole = await pool.query('SELECT * FROM roles WHERE role=?', [roles])
       roles = foundRole.map(role => role.id)
-      console.log(roles)
+  
     } else {
       const role = await pool.query('SELECT * FROM roles WHERE role=?', ['user']);
       roles = role[0].id
-
     }
 
     let hashedPassword = await bcrypt.hash(pass, 8)
@@ -45,9 +33,9 @@ const register = (req, res) => {
       id_role: roles
     }
 
-    const savedClient = await pool.query('INSERT INTO clients set ?', [client])
+    await pool.query('INSERT INTO clients set ?', [client])
 
-    const token = jwt.sign({ id: savedClient.id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: client.id }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN
     })
 
@@ -66,17 +54,13 @@ const login = async (req, res) => {
     }
 
     const clients = await pool.query('SELECT * FROM clients WHERE username=?', [username])
+    
     if (!clients[0]) res.status(400).json({ message: "Client Not Found" })
 
     const matchPassword = await bcrypt.compare(pass, clients[0].pass)
 
-    if (!matchPassword) {
-      return res.status(401).json({
-        token: null,
-        message: 'Invalid password'
-      })
-    }
-
+    if (!matchPassword) return res.status(401).json({ token: null, message: 'Invalid password' })
+    
     const token = jwt.sign({ id: clients[0].id }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN
     })
