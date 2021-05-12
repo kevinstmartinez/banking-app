@@ -60,6 +60,7 @@ const doGetDeleteService = async(req, res) =>{
   res.redirect('/services')
 }
 
+<<<<<<< HEAD
 const deadline = async(req, res) =>{
   const { id } = req.params
   const services = await pool.query('SELECT * FROM services WHERE id=? ', [id])
@@ -71,6 +72,8 @@ const deadline = async(req, res) =>{
     message: 'ok'
   })
 }
+=======
+>>>>>>> refactor/features
 
 module.exports = {
   doGetAllServices,
@@ -79,5 +82,9 @@ module.exports = {
   doGetDeleteService,
   doPostInsertService,
   doPostEditService,
+<<<<<<< HEAD
   deadline
+=======
+
+>>>>>>> refactor/features
 }
