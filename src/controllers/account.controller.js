@@ -17,10 +17,10 @@ const generateAccountNumber = () =>{
     return num
 }
 
-const account_number = generateAccountNumber()
 
 const doPostInsertAccount = async(req, res) =>{
   const { balance = 0, type_account, id_client } = req.body
+  let account_number = generateAccountNumber()
   const newAccount = {
     account_number,
     balance,

@@ -3,7 +3,8 @@ const morgan = require('morgan')
 const app = express()
 const cookieParser = require('cookie-parser')
 
-const port = 4000 || process.env.PORT
+const { NODE_ENV } = process.env
+const port = NODE_ENV === 'test' ? 4001 : 4000
 
 require('./database')
 

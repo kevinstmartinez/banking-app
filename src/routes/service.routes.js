@@ -11,7 +11,7 @@ const {
   doPostEditService,
 } = require('../controllers/service.controller')
 
-router.get('/', [verifyToken, isAdmin], doGetAllServices)
+router.get('/', doGetAllServices)
 router.get('/insert', [verifyToken, isAdmin], doGetInsertService)
 router.post('/insert', [verifyToken, isAdmin], doPostInsertService)
 router.get('/edit/:id', [verifyToken, isAdmin], doGetEditService)

@@ -1,9 +1,11 @@
 
-POST http://localhost:4000/api/payments/payment
+POST http://localhost:4001/api/payments/payment
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzIsImlhdCI6MTYyMDg2NTEyNCwiZXhwIjoxNjI4NjQxMTI0fQ.StpqusLNkza7dlbLGP27AZxocZ37ANe8kjF8TquSySA
+
 
 {
-  "invoice_amount": 68950,
-  "number_payment_references": "35187716746",
-  "id_service": 14
+  "invoice_amount": 60000,
+  "number_payment_references": "02379449748",
+  "id_service": 20
 }

@@ -2,10 +2,12 @@ require('dotenv').config()
 const mysql = require('mysql')
 const { promisify } = require('util')
 
+const {DB_DATABASE, DB_DATABASE_TEST, NODE_ENV} = process.env
+
 let host = process.env.DB_HOST
 let user = process.env.DB_USER
 let password = process.env.DB_PASSWORD
-let database_name = process.env.DB_DATABASE
+let database_name = NODE_ENV === 'test' ? DB_DATABASE_TEST : DB_DATABASE
 
 const database = {
   host: host,
