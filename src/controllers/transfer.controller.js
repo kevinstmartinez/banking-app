@@ -62,6 +62,13 @@ const transfer = async (req, res) => {
   
   const accountTransferDestiny = await pool.query('SELECT * from accounts WHERE account_number=?', [destiny_account_number])
   let transferDeposit = accountTransferDestiny[0].balance + amount
+
+  const clientOrigin = await pool.query('SELECT * FROM clients WHERE id=?', [accountTransferOrigin[0].id_client])
+  const clientDestiny = await pool.query('SELECT * FROM clients WHERE id=?', [accountTransferDestiny[0].id_client])
+
+  if (clientOrigin[0].id_bank !== clientDestiny[0].id_bank) {
+    transferWithdraw -= 8470
+  }
   
   if (accountTransferOrigin[0].balance >= amount) transferWithdraw
   else return res.status(400).json({ message: 'Not enough balance' })
