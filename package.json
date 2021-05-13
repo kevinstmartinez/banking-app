@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/"
+    "test": "NODE_ENV=test nodemon src/",
+    "dev": "NODE_ENV=development nodemon src/",
+    "start": "NODE_ENV=production node src/index.js",
+    "cypress:open": "cypress open"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +24,7 @@
     "mysql2": "^2.2.5"
   },
   "devDependencies": {
+    "cypress": "^7.3.0",
     "nodemon": "^2.0.7"
   }
 }

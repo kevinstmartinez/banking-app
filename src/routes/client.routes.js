@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const router = Router()
+const { verifyToken, isAdmin } = require('../middlewares/index')
 
 const { 
   doGetAllClients,
@@ -9,11 +10,11 @@ const {
   doPostInsertClient,
   doPostEditClient } = require('../controllers/client.controller')
 
-router.get('/', doGetAllClients)
-router.get('/insert', doGetInsertClient)
-router.post('/insert', doPostInsertClient)
-router.get('/edit/:id', doGetEditClient)
-router.post('/edit/:id', doPostEditClient)
-router.get('/delete/:id', doGetDeleteClient)
+router.get('/', [verifyToken, isAdmin], doGetAllClients)
+router.get('/insert', [verifyToken, isAdmin], doGetInsertClient)
+router.post('/insert', [verifyToken, isAdmin], doPostInsertClient)
+router.get('/edit/:id', [verifyToken, isAdmin], doGetEditClient)
+router.post('/edit/:id', [verifyToken, isAdmin], doPostEditClient)
+router.get('/delete/:id', [verifyToken, isAdmin], doGetDeleteClient)
 
 module.exports = router

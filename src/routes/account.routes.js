@@ -11,11 +11,11 @@ const {
   doPostEditAccount
 } = require('../controllers/account.controller')
 
-router.get('/', doGetAllAccounts)
-router.get('/insert', doGetInsertAccount)
-router.post('/insert', [ verifyToken, isAdmin ], doPostInsertAccount)
-router.get('/edit/:id', doGetEditAccount)
-router.post('/edit/:id', doPostEditAccount)
-router.get('/delete/:id', doGetDeleteAccount)
+router.get('/', [ verifyToken, isAdmin], doGetAllAccounts)
+router.get('/insert', verifyToken, doGetInsertAccount)
+router.post('/insert', verifyToken, doPostInsertAccount)
+router.get('/edit/:id', [ verifyToken, isAdmin], doGetEditAccount)
+router.post('/edit/:id', [ verifyToken, isAdmin], doPostEditAccount)
+router.get('/delete/:id', [ verifyToken, isAdmin], doGetDeleteAccount)
 
 module.exports = router

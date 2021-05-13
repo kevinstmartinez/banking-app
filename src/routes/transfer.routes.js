@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const router = Router()
+const { verifyToken, isAdmin } = require('../middlewares/index')
 
 const {
   doGetAllTransfers,
@@ -12,12 +13,12 @@ const {
 
 } = require('../controllers/transfer.controller')
 
-router.get('/', doGetAllTransfers)
-router.get('/insert', doGetInsertTransfer)
-router.post('/insert', doPostInsertTransfer)
-router.get('/edit/:id', doGetEditTransfer)
-router.post('/edit/:id', doPostEditTransfer)
-router.get('/delete/:id', doGetDeleteTransfer)
-router.post('/transfer', transfer)
+router.get('/', [verifyToken, isAdmin], doGetAllTransfers)
+router.get('/insert', [verifyToken, isAdmin], doGetInsertTransfer)
+router.post('/insert', [verifyToken, isAdmin], doPostInsertTransfer)
+router.get('/edit/:id', [verifyToken, isAdmin], doGetEditTransfer)
+router.post('/edit/:id', [verifyToken, isAdmin], doPostEditTransfer)
+router.get('/delete/:id', [verifyToken, isAdmin], doGetDeleteTransfer)
+router.post('/transfer', verifyToken, transfer)
 
 module.exports = router
