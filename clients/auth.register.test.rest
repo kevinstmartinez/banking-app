@@ -4,11 +4,11 @@ Content-Type: application/json
 
 {
   "dni": 1193543225,
-  "email": "kevin@gmail.com",
-  "name_lastname": "Kevin Martinez",
-  "username": "kevinstmartinez",
-  "pass": "1123581321",
-  "passConfirm": "1123581321",
+  "email": "nicolas@gmail.com",
+  "name_lastname": "Nicolas Romero",
+  "username": "NicolasRomeroRobayo",
+  "pass": "password",
+  "passConfirm": "password",
   "id_bank": 1,
   "role": [
     "admin"

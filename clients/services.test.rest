@@ -1,11 +1,11 @@
 POST http://localhost:4001/api/services/insert
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzEsImlhdCI6MTYyMDg2NDQzNCwiZXhwIjoxNjI4NjQwNDM0fQ._mmSYLO9_ik4YDtSj75-3IPxPkgUcmSqqDahr5zF9kw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzEsImlhdCI6MTYyMDk1NzkxOCwiZXhwIjoxNjI4NzMzOTE4fQ.Y3yInVmoqfRW_pDjSAULIxPOAkKe5dfFtqyGz3fL9g8
 
 {
   "name": "Agua",
   "type_service": "public",
   "value": 60000,
-  "id_account": 18
+  "id_account": 12
 }
 
