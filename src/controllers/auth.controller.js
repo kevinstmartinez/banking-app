@@ -46,10 +46,10 @@ const register = (req, res) => {
 const login = async (req, res) => {
   try {
     const { username, pass } = req.body
-
+    console.log('req', req.body)
     if (!username || !pass) {
-      return res.status(400).send({
-        message: 'Please provide an email and password'
+      return res.status(400).json({
+        message: 'Please provide an username and password'
       })
     }
 
@@ -72,6 +72,7 @@ const login = async (req, res) => {
     res.cookie('jwt', token, cookieOptions)
 
     res.status(200).json({ token })
+    
   } catch (error) {
     console.log(error)
   }
