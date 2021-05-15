@@ -19,6 +19,8 @@ export default function Login(){
       setUser(user)
       setUsername('')
       setPassword('')
+
+      console.log(user)
       router.push('/dashboard')
       
     } catch (error) {
