@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const Sidebar = () => {
   return (
-    <div className="bg-sidebar text-white w-64 h-screen" style={{ gridArea: "nav" }}>
+    <div className="bg-sidebar text-white h-screen" style={{ gridArea: "nav" }}>
 
       <ul className="flex flex-col py-6 space-y-1">
         <li className="px-5">

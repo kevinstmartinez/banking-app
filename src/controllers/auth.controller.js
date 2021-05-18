@@ -65,13 +65,7 @@ const login = async (req, res) => {
       expiresIn: process.env.JWT_EXPIRES_IN
     })
 
-    const cookieOptions = {
-      expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
-      httpOnly: true
-    }
-    res.cookie('jwt', token, cookieOptions)
-
-    res.status(200).json({ token })
+    res.status(200).json({ name: clients[0].name_lastname, token })
     
   } catch (error) {
     console.log(error)

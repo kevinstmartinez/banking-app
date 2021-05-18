@@ -4,7 +4,7 @@ import Main from './Main'
 
 const Layout = () => {
   return (
-    <div style={{ display: "grid", gridTemplateAreas: '"header header header" "nav main main"' }}>
+    <div style={{ display: "grid", gridTemplateAreas: '"header header header header header header" "nav main main main main main"' }}>
       <Sidebar />
       <Header username='djreggae' />
       <Main />
