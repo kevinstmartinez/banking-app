@@ -96,6 +96,7 @@ export default function Login() {
 
             <button
               type="submit"
+              id='form-login-button'
               onClick={handleLogin}
               className="w-full py-3 mt-10 bg-gray-800 rounded-sm
                     font-medium text-white uppercase

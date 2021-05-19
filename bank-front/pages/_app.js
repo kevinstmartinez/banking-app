@@ -8,13 +8,16 @@ import "tailwindcss/tailwind.css";
 
 
 function MyApp({ Component, pageProps }) {
-  const [username, setUsername] = useState(null);
+  const [username, setUsername] = useState();
 
   useEffect(() => {
     const token = localStorage.getItem("loguedUser");
-    const getToken = jwt_decode(token);
-    console.log("getToken", getToken);
-    setUsername(getToken.username);
+    if(token){
+      const getToken = jwt_decode(token);
+      console.log("getToken", getToken);
+      setUsername(getToken.username);
+    }
+    
   }, []);
 
   return (
