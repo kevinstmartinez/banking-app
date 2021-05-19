@@ -6,6 +6,7 @@ import ContextProvider from "../context/index";
 import "../styles/globals.css";
 import "tailwindcss/tailwind.css";
 
+
 function MyApp({ Component, pageProps }) {
   const [username, setUsername] = useState(null);
 
