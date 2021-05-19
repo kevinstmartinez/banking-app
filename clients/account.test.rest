@@ -1,8 +1,8 @@
-POST http://localhost:4001/api/accounts/insert
+POST http://localhost:4000/api/accounts/insert
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzEsImlhdCI6MTYyMDg2NDQzNCwiZXhwIjoxNjI4NjQwNDM0fQ._mmSYLO9_ik4YDtSj75-3IPxPkgUcmSqqDahr5zF9kw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJrZXZpbnN0bWFydGluZXoiLCJpYXQiOjE2MjEzODU5NzMsImV4cCI6MTYyOTE2MTk3M30._ebIa5bK_Q2nXU9XItBjVkd8o3yV4oKk4e7NYp9h-zs
 
 {
   "type_account": "Ahorros",
-  "id_client": 32
+  "id_client": 19
 }
