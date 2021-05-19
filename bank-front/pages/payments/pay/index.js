@@ -1,96 +1,39 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ]
-  }
-  ```
-*/
-import { LockClosedIcon } from "@heroicons/react/solid";
-
-export default function Example() {
+export default function Pay() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="flex flex-col h-screen bg-gray-100">
+      <div className="grid place-items-center mx-2 my-20 sm:my-auto">
         <div>
-          <img
-            className="mx-auto h-12 w-auto"
-            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-            alt="Workflow"
-          />
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Haz un Pago
-          </h2>
-        </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
-          <input type="hidden" name="remember" defaultValue="true" />
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="email-address" className="sr-only">
-                Monto
-              </label>
-              <input
-                id="email-address"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="monto"
-              />
+          <form className="max-w-xl m-4 p-10 bg-white rounded shadow-xl">
+          <h3 className="font-semibold text-2xl lg:text-2xl text-gray-800">
+            Service Information
+            </h3>
+            <div className="mt-3">
+              <label className="block text-sm text-gray-00" for="cus_name">Invoice Amount</label>
+              <input className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="amount" name="amount" type="text" required="" placeholder="amount" aria-label="Name" />
             </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                id
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Número de referencia de pago"
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                id
-              </label>
-              <input
-                id="id-service"
-                name="id-service"
-                type="text"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="id del servicio"
-              />
-            </div>
-          </div>
 
-          <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                <LockClosedIcon
-                  className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                  aria-hidden="true"
-                />
-              </span>
-              Pagar
-            </button>
-          </div>
-        </form>
+            <div className="mt-3">
+              <label className="block text-sm text-gray-00" for="cus_name">Number Payment References</label>
+              <input className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="references" name="references" type="text" required="" placeholder="number references" aria-label="Name" />
+            </div>
+
+            <div className="mt-3 relative inline-block w-full text-gray-700">
+            <label className="block text-sm text-gray-00" for="cus_name">Service</label>
+              <select className="w-full h-8 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" placeholder="id service">
+                {
+                  <option>Services</option>
+                }
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
+              </div>
+            </div>
+
+            <div className="mt-4">
+              <button className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Pay</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

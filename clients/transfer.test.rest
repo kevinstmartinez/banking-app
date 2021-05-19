@@ -4,6 +4,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzEsImlhdCI6M
 
 {
   "amount": 1,
-  "destiny_account_number": "047562",
+  "destiny_account_number": "834982",
   "origin_account_number": "084943"
 }

@@ -2,13 +2,28 @@ const express = require('express')
 const morgan = require('morgan')
 const app = express()
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
 
 const { NODE_ENV } = process.env
 const port = NODE_ENV === 'test' ? 4001 : 4000
+let allowedOrigins = ['http://localhost:3000']
+
 
 require('./database')
 
 app.use(morgan('dev'))
+app.use(cors({
+  origin: function(origin, callback){
+
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){
+      var msg = 'The CORS policy for this site does not ' +
+                'allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}))
 app.use(express.json())
 app.use(cookieParser())
 
