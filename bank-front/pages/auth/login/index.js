@@ -12,7 +12,7 @@ export default function Login() {
     event.preventDefault();
 
     try {
-      const logUser = await axios.post("http://localhost:4001/api/auth/login", {
+      const logUser = await axios.post("http://localhost:4000/api/auth/login", {
         username,
         pass,
       });

@@ -1,4 +1,63 @@
+import axios from "axios";
+import ContextProvider from "../../context/index";
+import { useState, useEffect, useContext } from "react";
+
 export default function Transfer() {
+  const id = useContext(ContextProvider);
+  const [accNumber, setAccNumber] = useState();
+  const [fieldState, setFieldState] = useState({
+    amount: "",
+    destination: "",
+    origin: "384870",
+  });
+
+  const handleFieldChange = (e) => {
+    setFieldState({
+      ...fieldState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  console.log("field >>", fieldState);
+
+  const handleTransaction = async (e) => {
+    e.preventDefault();
+    // await axios("http://localhost:4000/api/transfers/transfer", {
+    //   method: "POST",
+    //   headers: {
+    //     Authorization:
+    //       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksInVzZXJuYW1lIjoiZGpyZWdnYWUiLCJpYXQiOjE2MjE1NTYzNjcsImV4cCI6MTYyOTMzMjM2N30.h6x9wTocrF40uWTjejnpwYbI5MIWehP2LKs_arxDY4U",
+    //   },
+    //   data: { fieldState },
+    // });
+
+    await fetch("http://localhost:4000/api/transfers/transfer", {
+      method: "POST",
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksInVzZXJuYW1lIjoiZGpyZWdnYWUiLCJpYXQiOjE2MjE1NTYzNjcsImV4cCI6MTYyOTMzMjM2N30.h6x9wTocrF40uWTjejnpwYbI5MIWehP2LKs_arxDY4U",
+      },
+      data: { fieldState },
+    });
+  };
+
+  const getAccount = async () => {
+    try {
+      const data = await axios.get(
+        `http://localhost:4000/api/accounts/balance/${id}`
+      );
+      const { account_number } = data.data.balance;
+      setAccNumber(account_number);
+      console.log("data >>>", data);
+    } catch (error) {
+      console.error("Error fetching data", error);
+    }
+  };
+
+  useEffect(() => {
+    getAccount();
+  }, []);
+
   return (
     <div className="flex flex-col h-screen bg-gray-100">
       <div className="grid place-items-center mx-2 my-20 sm:my-auto">
@@ -11,7 +70,7 @@ export default function Transfer() {
             Transfer Information
           </h3>
 
-          <form className="w-full max-w-lg">
+          <form className="w-full max-w-lg" onSubmit={handleTransaction}>
             <div className="mt-3">
               <label className="block text-sm text-gray-00" for="cus_name">
                 Amount
@@ -24,35 +83,38 @@ export default function Transfer() {
                 required=""
                 placeholder="amount"
                 aria-label="Name"
+                onChange={handleFieldChange}
               />
             </div>
             <div className="flex flex-wrap -mx-3 mb-6 mt-8">
-              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label className="block text-sm text-gray-00" for="cus_name">
-                  Account Destiny
-                </label>
-                <input
-                  className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
-                  id="amount"
-                  name="amount"
-                  type="text"
-                  required=""
-                  placeholder="origin"
-                  aria-label="Name"
-                />
-              </div>
               <div className="w-full md:w-1/2 px-3">
                 <label className="block text-sm text-gray-00" for="cus_name">
                   Account Origin
                 </label>
                 <input
                   className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
-                  id="amount"
-                  name="amount"
+                  id="origin"
+                  name="origin"
                   type="text"
                   required=""
-                  placeholder="destiny"
+                  // value={accNumber}
+                  placeholder="Origin"
                   aria-label="Name"
+                />
+              </div>
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label className="block text-sm text-gray-00" for="cus_name">
+                  Destination Account
+                </label>
+                <input
+                  className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
+                  id="destination"
+                  name="destination"
+                  type="text"
+                  required=""
+                  placeholder="Destination"
+                  aria-label="Name"
+                  onChange={handleFieldChange}
                 />
               </div>
             </div>
