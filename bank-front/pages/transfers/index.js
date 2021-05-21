@@ -4,11 +4,11 @@ import { useState, useEffect, useContext } from "react";
 
 export default function Transfer() {
   const id = useContext(ContextProvider);
-  const [accNumber, setAccNumber] = useState();
+  const [accNumber, setAccNumber] = useState("");
   const [fieldState, setFieldState] = useState({
-    amount: "",
-    destination: "",
-    origin: "384870",
+    amount: 0,
+    destiny_account_number: "",
+    origin_account_number: accNumber,
   });
 
   const handleFieldChange = (e) => {
@@ -18,11 +18,27 @@ export default function Transfer() {
     });
   };
 
-  console.log("field >>", fieldState);
 
+  console.log("field >>", fieldState);
+console.log("accN", accNumber)
   const handleTransaction = async (e) => {
     e.preventDefault();
-    // await axios("http://localhost:4000/api/transfers/transfer", {
+    const token = localStorage.getItem('loguedUser')
+    await axios({
+      method: "POST",
+      url: 'http://localhost:4000/api/transfers/transfer',
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      data: {
+        "amount": parseInt(fieldState.amount),
+        "destiny_account_number": fieldState.destiny_account_number,
+        "origin_account_number": fieldState.origin_account_number
+        
+      }
+    });
+
+    // await fetch("http://localhost:4000/api/transfers/transfer", {
     //   method: "POST",
     //   headers: {
     //     Authorization:
@@ -30,25 +46,15 @@ export default function Transfer() {
     //   },
     //   data: { fieldState },
     // });
-
-    await fetch("http://localhost:4000/api/transfers/transfer", {
-      method: "POST",
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksInVzZXJuYW1lIjoiZGpyZWdnYWUiLCJpYXQiOjE2MjE1NTYzNjcsImV4cCI6MTYyOTMzMjM2N30.h6x9wTocrF40uWTjejnpwYbI5MIWehP2LKs_arxDY4U",
-      },
-      data: { fieldState },
-    });
   };
 
-  const getAccount = async () => {
+  async function getAccount() {
     try {
       const data = await axios.get(
         `http://localhost:4000/api/accounts/balance/${id}`
       );
-      const { account_number } = data.data.balance;
-      setAccNumber(account_number);
-      console.log("data >>>", data);
+      console.log("accountN", data.data.balance.account_number)
+      setAccNumber(data.data.balance.account_number)
     } catch (error) {
       console.error("Error fetching data", error);
     }
@@ -93,13 +99,14 @@ export default function Transfer() {
                 </label>
                 <input
                   className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
-                  id="origin"
-                  name="origin"
+                  id="origin_account_number"
+                  name="origin_account_number"
                   type="text"
-                  required=""
-                  // value={accNumber}
+                  required="" 
                   placeholder="Origin"
                   aria-label="Name"
+                  onChange={handleFieldChange}
+                  
                 />
               </div>
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -108,8 +115,8 @@ export default function Transfer() {
                 </label>
                 <input
                   className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded"
-                  id="destination"
-                  name="destination"
+                  id="destiny_account_number"
+                  name="destiny_account_number"
                   type="text"
                   required=""
                   placeholder="Destination"

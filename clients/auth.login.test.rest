@@ -13,6 +13,6 @@ POST http://localhost:4000/api/auth/login
 Content-Type: application/json
 
 {
-  "username": "username",
+  "username": "NicolasRomeroRobayo",
   "pass": "password"
 }
