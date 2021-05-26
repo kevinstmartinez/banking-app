@@ -9,6 +9,7 @@ const {
   doGetDeleteService,
   doPostInsertService,
   doPostEditService,
+  getAccountService,
 } = require('../controllers/service.controller')
 
 router.get('/', doGetAllServices)
@@ -17,6 +18,7 @@ router.post('/insert', [verifyToken, isAdmin], doPostInsertService)
 router.get('/edit/:id', [verifyToken, isAdmin], doGetEditService)
 router.post('/edit/:id', [verifyToken, isAdmin], doPostEditService)
 router.get('/delete/:id', [verifyToken, isAdmin], doGetDeleteService)
+router.get('/service/:id', getAccountService)
 
 
 module.exports = router

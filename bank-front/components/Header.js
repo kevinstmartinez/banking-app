@@ -1,8 +1,14 @@
-import { useContext } from "react";
-import ContextProvider from "../context/index";
+import { useEffect, useState, useContext } from "react";
+import jwt_decode from "jwt-decode";
 
 const Header = () => {
-  const username = useContext(ContextProvider);
+  const [username, setUsername] = useState();
+  useEffect(() => {
+    const data = localStorage.getItem("loguedUser");
+    const user = jwt_decode(data);
+    setUsername(user.username);
+  }, []);
+
   return (
     <nav
       className="bg-header w-full flex justify-between items-center px-8 h-20 text-white"

@@ -1,10 +1,10 @@
 
-POST http://localhost:4001/api/auth/register
+POST http://localhost:4000/api/auth/register
 Content-Type: application/json
 
 {
-  "dni": 1193543225,
-  "email": "nicolas@gmail.com",
+  "dni": 112345890,
+  "email": "nico@gmail.com",
   "name_lastname": "Nicolas Romero",
   "username": "NicolasRomeroRobayo",
   "pass": "password",

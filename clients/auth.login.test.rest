@@ -1,23 +1,18 @@
 
-POST http://localhost:4001/api/auth/login
+POST http://localhost:4000/api/auth/login
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
-  "username": "NicolasRomeroRobayo",
-  "pass": "password"
-=======
   "username": "kevinstmartinez",
   "pass": "1123581321"
->>>>>>> 80ffc417b93c3b920b02458e9cf27a37683e88b9
 }
 
 ###
 
-POST http://localhost:4001/api/auth/login
+POST http://localhost:4000/api/auth/login
 Content-Type: application/json
 
 {
-  "username": "username",
+  "username": "NicolasRomeroRobayo",
   "pass": "password"
 }

@@ -60,6 +60,14 @@ const doGetDeleteService = async(req, res) =>{
   res.redirect('/services')
 }
 
+const getAccountService = async(req, res) => {
+  const { id } = req.params
+  const service = await pool.query('SELECT * FROM services WHERE id_account=?', [id])
+  console.log("service", service)
+  res.status(200).json({ service: service })
+
+}
+
 
 module.exports = {
   doGetAllServices,
@@ -68,4 +76,5 @@ module.exports = {
   doGetDeleteService,
   doPostInsertService,
   doPostEditService,
+  getAccountService
 }

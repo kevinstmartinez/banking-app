@@ -6,23 +6,18 @@ import ContextProvider from "../context/index";
 import "../styles/globals.css";
 import "tailwindcss/tailwind.css";
 
-
 function MyApp({ Component, pageProps }) {
-  const [username, setUsername] = useState();
+  const [id, setId] = useState();
 
   useEffect(() => {
     const token = localStorage.getItem("loguedUser");
-    if(token){
-      const getToken = jwt_decode(token);
-      console.log("getToken", getToken);
-      setUsername(getToken.username);
-    }
-    
+    const getToken = jwt_decode(token);
+    setId(getToken.id);
   }, []);
 
   return (
-    <ContextProvider.Provider value={username}>
-      <Component {...pageProps} />;
+    <ContextProvider.Provider value={id}>
+      <Component {...pageProps} />
     </ContextProvider.Provider>
   );
 }

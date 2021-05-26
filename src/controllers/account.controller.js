@@ -22,7 +22,7 @@ const getAccBalance = async (req, res) => {
   const balance = await pool.query("SELECT * FROM accounts WHERE id_client=?", [
     id,
   ]);
-  console.log("balanece", balance);
+  console.log("balance", balance);
   res.status(200).json({ balance: balance[0] });
 };
 

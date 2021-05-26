@@ -70,6 +70,7 @@ const transfer = async (req, res) => {
     transferWithdraw -= 8470
   }
   
+  
   if (accountTransferOrigin[0].balance >= amount) transferWithdraw
   else return res.status(400).json({ message: 'Not enough balance' })
   
