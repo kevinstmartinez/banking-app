@@ -11,8 +11,11 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const token = localStorage.getItem("loguedUser");
-    const getToken = jwt_decode(token);
-    setId(getToken.id);
+    if (token){
+      const getToken = jwt_decode(token);
+      setId(getToken.id);
+
+    }
   }, []);
 
   return (

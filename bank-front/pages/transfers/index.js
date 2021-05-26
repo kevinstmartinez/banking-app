@@ -26,7 +26,7 @@ console.log("accN", accNumber)
     const token = localStorage.getItem('loguedUser')
     await axios({
       method: "POST",
-      url: 'http://localhost:4000/api/transfers/transfer',
+      url: 'http://localhost:4001/api/transfers/transfer',
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -51,7 +51,7 @@ console.log("accN", accNumber)
   async function getAccount() {
     try {
       const data = await axios.get(
-        `http://localhost:4000/api/accounts/balance/${id}`
+        `http://localhost:4001/api/accounts/balance/${id}`
       );
       console.log("accountN", data.data.balance.account_number)
       setAccNumber(data.data.balance.account_number)

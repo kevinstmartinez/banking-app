@@ -10,7 +10,7 @@ const Main = () =>{
 
   const getUserBalance = async () => {
     try {
-      const account = await axios.get(`http://localhost:4000/api/accounts/balance/${id}`)
+      const account = await axios.get(`http://localhost:4001/api/accounts/balance/${id}`)
       console.log("---->>>>",account)
       setBalance(account.data.balance.balance)
       setAccNumber(account.data.balance.account_number)
