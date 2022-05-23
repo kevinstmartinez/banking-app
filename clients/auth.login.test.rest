@@ -3,8 +3,8 @@ POST http://localhost:4000/api/auth/login
 Content-Type: application/json
 
 {
-  "username": "kevinstmartinez",
-  "pass": "1123581321"
+  "telefono": "304488838",
+  "pin": "1234"
 }
 
 ###
@@ -13,6 +13,6 @@ POST http://localhost:4000/api/auth/login
 Content-Type: application/json
 
 {
-  "username": "NicolasRomeroRobayo",
+  "username": "",
   "pass": "password"
 }

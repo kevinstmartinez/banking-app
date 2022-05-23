@@ -5,7 +5,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzIsImlhdCI6M
 
 
 {
-  "invoice_amount": 60000,
-  "number_payment_references": "02379449748",
-  "id_service": 20
+  "invoice_amount": 87000,
+  "number_payment_references": "47047394880",
+  "id_service": 23
 }

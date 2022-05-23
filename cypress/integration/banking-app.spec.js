@@ -5,13 +5,14 @@ describe('Test Proyecto', () =>{
   // it('register test', () =>{
   //   const item={"dni": 1193543225,"email": "nicolasRomero@gmail.com","name_lastname": "Nicolas Romero Robayo","username": "NicolasRomeroRobayo1","pass": "password1","passConfirm": "password1","id_bank": 1}
   //   cy.request('POST','http://localhost:4001/api/auth/register',item)
-  // })
+  // }) 
   it('login form works',() =>{
-    cy.get('input:first').type('NicolasRomeroRobayo')
-    cy.get('input:last').type('password')
+    cy.get('input:first').type('kevinstmartinez')
+    cy.get('input:last').type('1123581321')
     cy.get('#form-login-button').click()
     cy.contains('Wellcome')
   })
+
   it('login test', () =>{
     const item={"username": "NicolasRomeroRobayo","pass":"password"}
     cy.request('POST', 'http://localhost:4001/api/auth/login',item)

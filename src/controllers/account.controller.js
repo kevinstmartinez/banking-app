@@ -1,4 +1,5 @@
 const pool = require("../database");
+const jwt_decode = require('jwt-decode')
 
 const doGetAllAccounts = async (req, res) => {
   const accounts = await pool.query("SELECT * FROM accounts");
@@ -27,17 +28,24 @@ const getAccBalance = async (req, res) => {
 };
 
 const doPostInsertAccount = async (req, res) => {
-  const { balance = 0, type_account, id_client } = req.body;
+  const token = req.headers.authorization
+  const decoded = jwt_decode(token.slice(7, -1))
+
+  const client = await pool.query(
+    'SELECT * FROM clients WHERE id=?',
+    [decoded.id]
+  )
+  const { balance = 0, id_account_type, id_client = client[0].id } = req.body;
   let account_number = generateAccountNumber();
   const newAccount = {
     account_number,
     balance,
-    type_account,
+    id_account_type,
     id_client,
   };
   await pool.query("INSERT INTO accounts set ?", [newAccount]);
-  res.redirect("/accounts");
-};
+  res.status(200).json({ message: 'Account Insert successfully'})
+}
 
 const doGetEditAccount = async (req, res) => {
   const { id } = req.params;

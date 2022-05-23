@@ -3,16 +3,11 @@ POST http://localhost:4000/api/auth/register
 Content-Type: application/json
 
 {
-  "dni": 112345890,
-  "email": "nico@gmail.com",
-  "name_lastname": "Nicolas Romero",
-  "username": "NicolasRomeroRobayo",
-  "pass": "password",
-  "passConfirm": "password",
-  "id_bank": 1,
-  "role": [
-    "admin"
-  ]
+  "cedula": 1193543225,
+  "nombres": "Jacinto Moreno",
+  "email": "jacinto.moreno@gmail.com",
+  "telefono": "3156935758",
+  "pin": "0000" 
 }
 
 ###
